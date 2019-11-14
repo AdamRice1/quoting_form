@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'calculator/css/style.css' %}"> 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <title>Web Calculator</title>
+    <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <style>
+        .selection{
+            border: solid;
+            border-color: black;
+            padding: 1%;
+            border-radius: 10px;
+            margin: 1%;
+        }
+        .navbar{
+            background-color: #003466;
+        }
+        #title{
+            color: white;
+        }
+        .btn{
+            background-color: #003466;
+        }
+        #options{
+            margin-top: 1%;
+        }
+        #inner{
+            border: solid;
+            border-color: black;
+            padding: 1%;
+            margin: 1%;
+            border-radius: 10px;
+        }
+    </style>
+    <script>
+        function event_1(){
+        if(document.getElementById("reviews").checked) {
+            document.getElementById('reviewsHidden').disabled = true;
+            }
+        }
+        function event_2(){
+        if(document.getElementById("gleads").checked) {
+            document.getElementById('gleadsHidden').disabled = true;
+            }
+        }
+        function event_3(){
+        if(document.getElementById("cust_manage").checked) {
+            document.getElementById('custHidden').disabled = true;
+            }
+        }
+        function event_4(){
+        if(document.getElementById("promo").checked) {
+            document.getElementById('promoHidden').disabled = true;
+            }
+        }
+        function event_5(){
+        if(document.getElementById("cust_money").checked) {
+            document.getElementById('moneyHidden').disabled = true;
+            }
+        }
+        function event_6(){
+        if(document.getElementById("sales").checked) {
+            document.getElementById('salesHidden').disabled = true;
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar navbar-light">
+            <h2 id='title'>Growth Program Selection Tool</h2>
+        </nav>
+        <div class="row">
+            <div id='options' class="col">
+                    <table class="table table-bordered">
+                            <thead>
+                              <tr>
+                                <th scope="col">Silver</th>
+                                <th scope="col">Gold</th>
+                                <th scope="col">Platinum</th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr>
+                                <td>2</td>
+                                <td>4</td>
+                                <td>6</td>
+                              </tr>
+                            </tbody>
+                          </table>
+            </div>
+        </div>
+        <div class="row">
+          <div class="col">
+            <form id='form1' method="post" action='/calculate'>
+                {% csrf_token %}
+                <div class='selection'>
+                    <div class="form-check">
+                        <input id='reviews' name='reviews' class="form-check-input" type="checkbox" value="0" id="defaultCheck1" onclick="event_1()">
+                        <input id='reviewsHidden' type='hidden' value='1' name='reviews'>
+                        <label class="form-check-label" for="defaultCheck1">
+                            CUSTOMER REVIEWS (Powered by Podium)
+                        </label>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-check">
+                                <small id="emailHelp" class="form-text text-muted">Current Annual Cost</small>
+                                <input name='current_annual_cost' type="number" class="form-control" id="exampleInputPassword1" placeholder='0'>
+                            </div>
+                        </div>
+                    <div class='col'>
+                        <div class="form-check form-check-inline">
+                            <div class="form-check">
+                                <small id="emailHelp" class="form-text text-muted">$379/Month</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$4,548">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check">
+                                <small id="emailHelp" class="form-text text-muted">Google Rating</small>
+                                <input step='0.01' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                <div class="selection">
+                <div class="form-check">
+                    <input id='gleads' name='gleads' class="form-check-input" type="checkbox" value="0" id="defaultCheck2" onclick="event_2()">
+                    <input id='gleadsHidden' type='hidden' value='1' name='gleads'>
+                    <label class="form-check-label" for="defaultCheck2">
+                        GOOGLE LEADS (Powered by Search Kings)
+                    </label>
+                </div>
+                <div class="row">
+                        <div class="col">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Dealer Value </small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$3,000">
+                            </div>
+                        </div>
+                    <div class='col'>
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Leads YTD</small>
+                                <input name="leads" type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Cost/lead</small>
+                                <input name="cost_lead" type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">YTD Spend</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$12,138">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id='inner'>
+                <div class="row">
+                        <div class="col">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Potential Lead Volume</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="12">
+                            </div>
+                        </div>
+                    <div class='col'>
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">% of Leads for Service</small>
+                                <input name='leads_service' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Service Leads</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="10">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Avg Service Ticket</small>
+                                <input name='avg_service' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Service Revenue</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$1,878">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                        <div class="col">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Install Leads</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="2">
+                            </div>
+                        </div>
+                    <div class='col'>
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Closing Ratio</small>
+                                <input name='closing' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Avg Install Ticket</small>
+                                <input name='install_ticket' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">Install Revenue</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$6,797">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+                </div>
+                <div class="selection">
+                <div class="form-check">
+                    <input id='cust_manage' name='cust_manage' class="form-check-input" type="checkbox" value="0" id="defaultCheck2" onclick="event_3()">
+                    <input id='custHidden' type='hidden' value='1' name='cust_manage'>
+                    <label class="form-check-label" for="defaultCheck2">
+                        CUSTOMER MANAGEMENT (Service Titan, Payzerware, Aptora, etc.)
+                    </label>
+                    </div>
+                    <div class='row'>
+                        <div class="col-4">
+                        <small class="form-text text-muted">Dealer Value</small>
+                        <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$2,000">
+                        </div>
+                    </div>
+                </div>
+                <div class="selection">
+                <div class="form-check">
+                    <input id='promo' name='promo' class="form-check-input" type="checkbox" value="0" id="defaultCheck2" onclick='event_4()'>
+                    <input id='promoHidden' type='hidden' value='1' name='promo'>
+                    <label class="form-check-label" for="defaultCheck2">
+                        CONSUMER PROMOTION (3/15 - 5/15 & 9/15 - 11/15)
+                    </label>
+                </div>
+                <div class='row'>
+                        <div class="col-4">
+                            <small class="form-text text-muted">2019 Spring Dollars</small>
+                            <input name="spring" type="number" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="col-4">
+                            <small class="form-text text-muted">2019 Fall Dollars</small>
+                            <input name="fall" type="number" class="form-control" id="exampleInputPassword1">
+                         </div>
+                </div>
+                </div>
+                <div class="selection">
+                <div class="form-check">
+                    <input id='cust_money' name='cust_money' class="form-check-input" type="checkbox" value="0" id="defaultCheck2" onclick="event_5()">
+                    <input id='moneyHidden' type='hidden' value='1' name='cust_money'>
+                    <label class="form-check-label" for="defaultCheck2">
+                        CONSUMER FINANCING (1% Silver, 3% Gold, 4% Platinum)
+                    </label>
+                </div>
+                <div class="row">
+                        <div class="col">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">2019 Wells Fargo Volume</small>
+                                <input name='wells_fargo' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    <div class='col'>
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">1% Silver</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="1%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">3% Gold</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="3%">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">4% Platinum</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="4%">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="selection">
+                <div class="form-check">
+                    <input id='sales' name='sales' class="form-check-input" type="checkbox" value="0" id="defaultCheck2" onclick="event_6()">
+                    <input id='salesHidden' type='hidden' value='1' name='sales'>
+                    <label class="form-check-label" for="defaultCheck2">
+                        SALES INCENTIVE (SPIFF) PROGRAM
+                    </label>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted"># MBUs</small>
+                                <input name='mbu' type="number" class="form-control" id="exampleInputPassword1">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col">
+                        <div class="form-check form-check-inline">
+                            <div class="form-check special">
+                                <small id="emailHelp" class="form-text text-muted">SPIFF EARNED</small>
+                                <input disabled type="number" class="form-control" id="exampleInputPassword1" placeholder="$775">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="form-check">
+                <input id='calc' type="submit" class="btn btn-info" value='Calculate'>
+                </div>
+            </form>
+            <div class="row">
+                    <div class='col-12'>
+                        <h4>Total Dollars Earned:</h4>
+                            <table class="table table-bordered">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">Silver</th>
+                                        <th scope="col">Gold</th>
+                                        <th scope="col">Platinum</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr>
+                                        <td>{{silver}}</td>
+                                        <td>{{gold}}</td>
+                                        <td>{{platinum}}</td>
+                                      </tr>
+                                    </tbody>
+                                  </table>
+                    </div>
+        </div>
+      </div>
+</body>
+</html>
